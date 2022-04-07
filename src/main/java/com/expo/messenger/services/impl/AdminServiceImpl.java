@@ -1,2 +1,6 @@
-package com.expo.messenger.services.impl;public class AdminServiceImpl {
+package com.expo.messenger.services.impl;
+
+import com.expo.messenger.services.AdminService;
+
+public class AdminServiceImpl implements AdminService {
 }

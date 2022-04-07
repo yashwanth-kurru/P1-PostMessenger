@@ -1,2 +1,4 @@
-package com.expo.messenger.services;public interface AdminService {
+package com.expo.messenger.services;
+
+public interface AdminService {
 }
