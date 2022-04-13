@@ -1,9 +1,12 @@
 package com.expo.messenger.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,5 +21,11 @@ public class Channel {
     private String channelName;
 
     private String channelDescription;
+
+    @ManyToMany(mappedBy = "channels")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Post> posts;
+
 
 }

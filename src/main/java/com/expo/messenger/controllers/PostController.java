@@ -5,24 +5,30 @@ import com.expo.messenger.entities.Category;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/post")
 public class PostController {
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public void addCategory(@RequestBody Category cat){
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/get")
+    public void getPosts(){
+
+    }
+
+    @GetMapping("/get/{id}")
     public void getCategoryWithId(){
 
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public void updateCategory(){
 
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/delete")
     public void deleteCategory(){
 
     }

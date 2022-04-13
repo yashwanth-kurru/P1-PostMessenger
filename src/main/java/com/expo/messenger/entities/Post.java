@@ -1,13 +1,16 @@
 package com.expo.messenger.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,12 +22,24 @@ public class Post {
 
     private String title;
     private String message;
-    private int categoryId;
-    private int postedById;
     private Date createdAt;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @Fetch(FetchMode.SELECT)
-    private List<PostChannelRelationship> channels;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
+
+    @ManyToMany
+    @JoinTable(
+        name = "post_channel_relationship",
+        joinColumns ={ @JoinColumn(name = "post_id")},
+        inverseJoinColumns = {@JoinColumn(name = "channel_id")}
+    )
+    @JsonBackReference
+    @ToString.Exclude
+    private List<Channel> channels;
 
 }

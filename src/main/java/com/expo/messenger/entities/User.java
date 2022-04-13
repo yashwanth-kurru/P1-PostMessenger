@@ -3,8 +3,10 @@ package com.expo.messenger.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +20,8 @@ public class User {
     @Column(nullable = false)
     private String userName;
 
-    @Column(nullable = false)
-    private String channelSubscribed;
-
+    @ManyToOne
+    @JoinColumn(name = "channel_id")
+    private Channel channel;
 
 }

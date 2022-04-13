@@ -1,5 +1,4 @@
 package com.expo.messenger.services;
 
-
-public interface AdminService {
+public interface UserService {
 }
