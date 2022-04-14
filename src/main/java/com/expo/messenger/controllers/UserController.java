@@ -1,7 +1,10 @@
 package com.expo.messenger.controllers;
 
 import com.expo.messenger.entities.User;
+import com.expo.messenger.entities.User;
+import com.expo.messenger.models.request.UserDTO;
 import com.expo.messenger.services.impl.UserServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,13 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    @PostMapping("/")
-    public void addUser(@RequestBody User user){
+    @Autowired
+    private ModelMapper modelMapper;
 
+    @PostMapping("/add")
+    public ResponseEntity<User> addUser(@RequestBody UserDTO userDto){
+        User user = modelMapper.map(userDto, User.class);
+        return new ResponseEntity<>(userService.insertUser(user),HttpStatus.OK);
     }
 
     @GetMapping("/get")

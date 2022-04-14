@@ -22,10 +22,10 @@ public class Channel {
 
     private String channelDescription;
 
-    @ManyToMany(mappedBy = "channels")
-    @JsonManagedReference
-    @ToString.Exclude
-    private List<Post> posts;
+//    @ManyToMany(fetch = FetchType.LAZY ,mappedBy = "channels")
+//    @JsonManagedReference
+//    @ToString.Exclude
+//    private List<Post> posts;
 
 
 }

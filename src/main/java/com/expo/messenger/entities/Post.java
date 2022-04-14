@@ -38,7 +38,6 @@ public class Post {
         joinColumns ={ @JoinColumn(name = "post_id")},
         inverseJoinColumns = {@JoinColumn(name = "channel_id")}
     )
-    @JsonBackReference
     @ToString.Exclude
     private List<Channel> channels;
 

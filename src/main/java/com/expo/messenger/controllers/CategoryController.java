@@ -2,8 +2,10 @@ package com.expo.messenger.controllers;
 
 import com.expo.messenger.entities.Admin;
 import com.expo.messenger.entities.Category;
+import com.expo.messenger.models.request.CategoryDTO;
 import com.expo.messenger.services.CategoryService;
 import com.expo.messenger.services.impl.CategoryServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +20,13 @@ public class CategoryController {
     @Autowired
     private CategoryServiceImpl categoryService;
 
-    @PostMapping("/add")
-    public void addCategory(@RequestBody Category cat){
+    @Autowired
+    private ModelMapper modelMapper;
 
+    @PostMapping("/add")
+    public ResponseEntity<Category> addCategory(@RequestBody CategoryDTO categoryDTO){
+        Category category = modelMapper.map(categoryDTO, Category.class);
+        return new ResponseEntity<>(categoryService.insertCategory(category),HttpStatus.OK);
     }
 
     @GetMapping("/get")

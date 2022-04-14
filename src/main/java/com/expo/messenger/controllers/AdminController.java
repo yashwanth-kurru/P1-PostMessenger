@@ -1,7 +1,9 @@
 package com.expo.messenger.controllers;
 
 import com.expo.messenger.entities.Admin;
+import com.expo.messenger.models.request.AdminDTO;
 import com.expo.messenger.services.impl.AdminServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,12 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @PostMapping("/add")
-    public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin){
+    public ResponseEntity<Admin> addAdmin(@RequestBody AdminDTO adminDto){
+        Admin admin =  modelMapper.map(adminDto,Admin.class);
         return new ResponseEntity<>(adminService.insertAdmin(admin),HttpStatus.OK);
     }
 

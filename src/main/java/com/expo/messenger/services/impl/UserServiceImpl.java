@@ -14,6 +14,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+    public User insertUser(User user){
+        return userRepo.save(user);
+    }
+
     public List<User> getAllUsers()
     {
         return (List<User>) this.userRepo.findAll();
