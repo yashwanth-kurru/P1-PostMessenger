@@ -1,7 +1,7 @@
 package com.expo.messenger.controllers;
 
 
-import com.expo.messenger.entities.Post;
+import com.expo.messenger.entities.*;
 import com.expo.messenger.entities.Post;
 import com.expo.messenger.entities.Post;
 import com.expo.messenger.models.request.PostDTO;
@@ -34,6 +34,20 @@ public class PostController {
     @GetMapping("/get")
     public ResponseEntity<List<Post>> getPosts(){
         return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-by-category/{id}")
+    public ResponseEntity<List<Post>> getPostsByCategory(@PathVariable int id){
+        Category category = new Category();
+        category.setCategoryId(id);
+        return new ResponseEntity<>(postService.getAllPostsByCategory(category),HttpStatus.OK);
+    }
+
+    @GetMapping("/get-by-channel/{id}")
+    public ResponseEntity<List<Post>> getPostsByChannel(@PathVariable int id){
+        Channel channel = new Channel();
+        channel.setChannelId(id);
+        return new ResponseEntity<>(postService.getAllPostsByChannel(channel),HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")

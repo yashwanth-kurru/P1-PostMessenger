@@ -20,8 +20,18 @@ public class User {
     @Column(nullable = false)
     private String userName;
 
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    private String securityPin;
+
     @ManyToOne
     @JoinColumn(name = "channel_id")
     private Channel channel;
+
+
 
 }

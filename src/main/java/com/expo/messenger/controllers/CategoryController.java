@@ -5,6 +5,7 @@ import com.expo.messenger.entities.Category;
 import com.expo.messenger.models.request.CategoryDTO;
 import com.expo.messenger.services.CategoryService;
 import com.expo.messenger.services.impl.CategoryServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -40,8 +42,10 @@ public class CategoryController {
     }
 
     @PutMapping("/update")
-    public void updateCategory(){
-
+    public ResponseEntity<Category> updateCategory(@RequestBody CategoryDTO categoryDTO){
+        Category category = modelMapper.map(categoryDTO, Category.class);
+        log.info("Here here ==>  "+ category.getCategoryName()+" "+category.getCategoryName()+" "+category.getCategoryDescription());
+        return new ResponseEntity<>(categoryService.updateCategory(category),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

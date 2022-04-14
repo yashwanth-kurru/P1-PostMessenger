@@ -38,8 +38,9 @@ public class AdminController {
     }
 
     @PutMapping("/update")
-    public void updateAdmin(){
-
+    public ResponseEntity<Admin> updateAdmin(@RequestBody AdminDTO adminDTO){
+        Admin admin = modelMapper.map(adminDTO,Admin.class);
+        return new ResponseEntity<>(adminService.updateAdmin(admin),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

@@ -1,10 +1,8 @@
 package com.expo.messenger.controllers;
 
 
-import com.expo.messenger.entities.Category;
 import com.expo.messenger.entities.Channel;
 import com.expo.messenger.models.request.ChannelDTO;
-import com.expo.messenger.repositories.ChannelRepo;
 import com.expo.messenger.services.impl.ChannelServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +39,9 @@ public class ChannelController {
     }
 
     @PutMapping("/update")
-    public void updateChannel(){
-
+    public ResponseEntity<Channel> updateChannel(@RequestBody ChannelDTO channelDto){
+        Channel channel = modelMapper.map(channelDto, Channel.class);
+        return new ResponseEntity<>(channelService.updateChannel(channel),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

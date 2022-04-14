@@ -17,4 +17,7 @@ public class Admin {
     @Column(nullable = false)
     private String adminName;
 
+    private String email;
+    private String password;
+
 }

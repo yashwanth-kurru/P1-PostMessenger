@@ -1,5 +1,7 @@
 package com.expo.messenger.services.impl;
 
+import com.expo.messenger.entities.Category;
+import com.expo.messenger.entities.Channel;
 import com.expo.messenger.entities.Post;
 import com.expo.messenger.repositories.PostRepo;
 import com.expo.messenger.services.PostService;
@@ -20,5 +22,13 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPosts()
     {
         return (List<Post>) postRepo.findAll();
+    }
+
+    public List<Post> getAllPostsByCategory(Category category){
+        return postRepo.findAllByCategory(category);
+    }
+
+    public List<Post> getAllPostsByChannel(Channel channel){
+        return postRepo.findAllByChannels(channel);
     }
 }
