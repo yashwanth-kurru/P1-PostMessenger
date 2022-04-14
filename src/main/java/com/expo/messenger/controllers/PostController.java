@@ -3,7 +3,6 @@ package com.expo.messenger.controllers;
 
 import com.expo.messenger.entities.*;
 import com.expo.messenger.entities.Post;
-import com.expo.messenger.entities.Post;
 import com.expo.messenger.models.request.PostDTO;
 import com.expo.messenger.services.impl.PostServiceImpl;
 import org.modelmapper.ModelMapper;
@@ -50,19 +49,11 @@ public class PostController {
         return new ResponseEntity<>(postService.getAllPostsByChannel(channel),HttpStatus.OK);
     }
 
-    @GetMapping("/get/{id}")
-    public void getPostWithId(){
-
-    }
-
-    @PutMapping("/update")
-    public void updatePost(){
-
-    }
-
     @DeleteMapping("/delete")
-    public void deletePost(){
-
+    public ResponseEntity<String> deletePost(@RequestBody PostDTO postDTO){
+        Post post = modelMapper.map(postDTO, Post.class);
+        postService.deletePost(post);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

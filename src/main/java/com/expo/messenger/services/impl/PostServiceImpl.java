@@ -8,6 +8,7 @@ import com.expo.messenger.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class PostServiceImpl implements PostService {
     private PostRepo postRepo;
 
     public Post insertPost(Post post){
+        post.setCreatedAt(new Date());
         return postRepo.save(post);
     }
 
@@ -31,4 +33,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPostsByChannel(Channel channel){
         return postRepo.findAllByChannels(channel);
     }
+
+    public void deletePost(Post post){
+        postRepo.delete(post);
+    }
+
 }

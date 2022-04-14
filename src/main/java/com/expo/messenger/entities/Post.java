@@ -1,16 +1,13 @@
 package com.expo.messenger.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -34,9 +31,9 @@ public class Post {
 
     @ManyToMany
     @JoinTable(
-        name = "post_channel_relationship",
-        joinColumns ={ @JoinColumn(name = "post_id")},
-        inverseJoinColumns = {@JoinColumn(name = "channel_id")}
+            name = "post_channel_relationship",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "channel_id")}
     )
     @ToString.Exclude
     private List<Channel> channels;
