@@ -10,15 +10,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class AppConfig {
 
-//    @Value("${cors.allowed.origins}")
-//    private String corsOrigin;
+    @Value("*")
+    private String corsOrigin;
 
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
 
-/*    @Bean
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
@@ -29,6 +29,6 @@ public class AppConfig {
                         .allowedHeaders("Authorization");
             }
         };
-    }*/
+    }
 
 }
