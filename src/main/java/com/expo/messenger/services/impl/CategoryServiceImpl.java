@@ -33,4 +33,8 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryRepo.findById(id);
     }
 
+    public void deleteCategory(Category category){
+        categoryRepo.delete(category);
+    }
+
 }

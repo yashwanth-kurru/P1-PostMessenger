@@ -2,6 +2,8 @@ package com.expo.messenger.controllers;
 
 
 import com.expo.messenger.entities.Channel;
+import com.expo.messenger.entities.Channel;
+import com.expo.messenger.models.request.ChannelDTO;
 import com.expo.messenger.models.request.ChannelDTO;
 import com.expo.messenger.services.impl.ChannelServiceImpl;
 import org.modelmapper.ModelMapper;
@@ -45,8 +47,10 @@ public class ChannelController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteChannel(){
-
+    public ResponseEntity<String> deleteChannel(@RequestBody ChannelDTO channelDTO){
+        Channel admin = modelMapper.map(channelDTO,Channel.class);
+        channelService.deleteChannel(admin);
+        return new ResponseEntity<>("deleted successfully",HttpStatus.OK);
     }
 
 }

@@ -26,7 +26,7 @@ public class AppConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(corsOrigin)
                         .allowedMethods("*")
-                        .allowedHeaders("Authorization");
+                        .allowedHeaders("*");
             }
         };
     }

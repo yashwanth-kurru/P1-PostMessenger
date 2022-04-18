@@ -15,6 +15,12 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminRepo adminRepo;
 
+    public Admin login(String email){
+        Optional<Admin> admin = Optional.ofNullable(adminRepo.findByEmail(email));
+        return admin.orElse(null);
+
+    }
+
     public List<Admin> getAllAdmins(){
         return (List<Admin>) adminRepo.findAll();
     }
@@ -32,6 +38,10 @@ public class AdminServiceImpl implements AdminService {
     {
        Optional<Admin> admin =  adminRepo.findById(id);
         return admin.orElse(null);
+    }
+
+    public void deleteAdmin(Admin admin){
+        adminRepo.delete(admin);
     }
 
 }

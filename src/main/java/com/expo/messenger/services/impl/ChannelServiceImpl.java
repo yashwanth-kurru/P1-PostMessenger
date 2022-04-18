@@ -27,4 +27,8 @@ public class ChannelServiceImpl implements ChannelService {
         return this.channelRepo.save(channel);
     }
 
+    public void deleteChannel(Channel channel){
+        channelRepo.delete(channel);
+    }
+
 }

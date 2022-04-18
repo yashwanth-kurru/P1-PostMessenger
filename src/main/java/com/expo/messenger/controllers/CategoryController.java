@@ -1,6 +1,6 @@
 package com.expo.messenger.controllers;
 
-import com.expo.messenger.entities.Admin;
+import com.expo.messenger.entities.Category;
 import com.expo.messenger.entities.Category;
 import com.expo.messenger.models.request.CategoryDTO;
 import com.expo.messenger.services.CategoryService;
@@ -49,8 +49,10 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteCategory(){
-
+    public ResponseEntity<String> deleteCategory(@RequestBody CategoryDTO categoryDTO){
+        Category admin = modelMapper.map(categoryDTO,Category.class);
+        categoryService.deleteCategory(admin);
+        return new ResponseEntity<>("deleted successfully",HttpStatus.OK);
     }
 
 
